@@ -1,29 +1,30 @@
 {
   "name": "@kaadon.com/ethereumjs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "kaadon.com's plugins ethereum",
   "keywords": [
     "kaadon",
     "plugins",
     "ethereumjs"
   ],
-  "main": "blockchain/index.js",
+  "main": "ethereumjs/index.js",
   "author": "kaadon.com",
   "license": "MIT",
   "scripts": {
-    "build": "babel src --out-dir blockchain",
+    "build": "babel src --out-dir ethereumjs",
     "transaction": "pnpm build; node example/transaction.js",
     "scan": "pnpm build; node example/scan.js"
   },
   "files": [
-    "/helper"
+    "/ethereumjs",
+    "npm_plugins_blockchain.png"
   ],
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kaadon/npm_plugins_blockchain.git"
+    "url": "https://github.com/kaadon/npm_plugins_ethereumjs.git"
   },
   "dependencies": {
     "@ethereumjs/common": "^4.3.0",
