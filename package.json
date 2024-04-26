@@ -1,18 +1,19 @@
 {
-  "name": "@kaadon.com/blockchain",
-  "version": "0.0.16",
-  "description": "kaadon.com's plugins blockchain",
+  "name": "@kaadon.com/ethereumjs",
+  "version": "0.0.1",
+  "description": "kaadon.com's plugins ethereum",
   "keywords": [
     "kaadon",
     "plugins",
-    "blockchain"
+    "ethereumjs"
   ],
   "main": "blockchain/index.js",
   "author": "kaadon.com",
   "license": "MIT",
   "scripts": {
     "build": "babel src --out-dir blockchain",
-    "transaction": "pnpm build; node example/transaction.js"
+    "transaction": "pnpm build; node example/transaction.js",
+    "scan": "pnpm build; node example/scan.js"
   },
   "files": [
     "/helper"

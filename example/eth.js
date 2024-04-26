@@ -1,0 +1,46 @@
+const tx = {
+    accessList: [],
+    blockHash: '0xece6282250144cea2e2839a57a3d2dd4d742004c16d1f0f3dce271901ab4268a',
+    blockNumber: 5778533n,
+    chainId: 11155111n,
+    from: '0x4281ecf07378ee595c564a59048801330f3084ee',
+    gas: 60000n,
+    gasPrice: 4224666n,
+    hash: '0xc9eb3d2f6dd4161f9a103e4bc541b61dca6feac397e764da99b222b9742889d0',
+    input: '0x',
+    maxFeePerGas: 4224666n,
+    maxPriorityFeePerGas: 4224666n,
+    nonce: 1038504n,
+    r: '0x4dae74527d0a259c2c4265437199c68e55dcf8e2be1f1aac360f88bce3e747cb',
+    s: '0x7414e86c5b416b27185ef8ded4a3168c65872cbc2c059f639c4eb36b02baf4e5',
+    to: '0x9714db4df0f7f2749cc00d3a2dd245aebc7e3698',
+    transactionIndex: 118n,
+    type: 2n,
+    v: 1n,
+    value: 250000000000000000n,
+    data: '0x'
+}
+
+
+const tx20 = {
+    accessList: [],
+    blockHash: '0xae4f2b546429f38084ac16fe6654c14854bbd5e09324bbaa378f2985978e5439',
+    blockNumber: 5778982n,
+    chainId: 11155111n,
+    from: '0x4281ecf07378ee595c564a59048801330f3084ee',
+    gas: 60000n,
+    gasPrice: 1000689137n,
+    hash: '0x2ad442d73f2b64c5faab75fafe4c2ae96a4e5e8264087da77608c1f204d6d886',
+    input: '0xa9059cbb000000000000000000000000f547ed730e6eae52bc6bc6beb25a2b36199ed56e0000000000000000000000000000000000000000000000015af1d78b58c40000',
+    maxFeePerGas: 1000689137n,
+    maxPriorityFeePerGas: 1000689137n,
+    nonce: 1038568n,
+    r: '0x26454bf1fdd496837df0e3e46fb4f1ecf9a23006946ec1fdc12e6b2289b1d614',
+    s: '0x7b4a800137b9e6df89f2bad56c03422f150d2c25ab85751521d43a643b40a91b',
+    to: '0x779877a7b0d9e8603169ddbd7836e478b4624789',
+    transactionIndex: 97n,
+    type: 2n,
+    v: 0n,
+    value: 0n,
+    data: '0xa9059cbb000000000000000000000000f547ed730e6eae52bc6bc6beb25a2b36199ed56e0000000000000000000000000000000000000000000000015af1d78b58c40000'
+}
