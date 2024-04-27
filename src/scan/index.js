@@ -1,10 +1,10 @@
 
 const scanBlock = async (web3Client, blockNumber = null, contract) => {
-    let newBlock = await web3Client.eth.getBlockNumber()
+    let newBlock = await web3Client.client.eth.getBlockNumber()
     if (blockNumber >= newBlock) {
         throw new Error('The block has not been updated')
     }
-    const {transactions, timestamp} = await web3Client.eth.getBlock(blockNumber)
+    const {transactions, timestamp} = await web3Client.client.eth.getBlock(blockNumber)
     let blockTransactions = []
     for (const transaction of transactions) {
         const transactionData = {
@@ -24,14 +24,14 @@ const scanBlock = async (web3Client, blockNumber = null, contract) => {
             to,
             value,
             data
-        } = await web3Client.eth.getTransaction(transaction)
+        } = await web3Client.client.eth.getTransaction(transaction)
         if (data === '0x') {
             transactionData.toAddress = to
-            transactionData.amount = web3Client.utils.fromWei(value, 'ether')
+            transactionData.amount = web3Client.client.utils.fromWei(value, 'ether')
         } else {
             if ('0xa9059cbb' === data.substring(0,10)) {
                 transactionData.toAddress = '0x' + data.substring(34, 74).toString()
-                transactionData.amount = web3Client.utils.fromWei(web3Client.utils.hexToNumberString('0x' + data.substring(74, data.length)), contract?.decimals || 'ether')
+                transactionData.amount = web3Client.client.utils.fromWei(web3Client.client.utils.hexToNumberString('0x' + data.substring(74, data.length)), contract?.decimals || 'ether')
                 transactionData.type = contract?.symbol || transactionData.toAddress
                 transactionData.contract = to
             }
