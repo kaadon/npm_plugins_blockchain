@@ -5,11 +5,12 @@
  * @param PrivateKey //转出地址私钥
  * @param number //转出金额
  */
-const sendEth = async (web3Client, toAddress, fromAddress, PrivateKey,  number) => {
+const sendEth = async (web3Client, toAddress, fromAddress, PrivateKey, number = 'all') => {
     try {
         //逻辑代码
-        let userBalance = await web3Client.eth.getBalance(fromAddress)//余额
-        if (web3Client.utils.fromWei(userBalance,'ether') < number) {
+        let userBalance = web3Client.utils.fromWei(await web3Client.eth.getBalance(fromAddress), 'ether')//余额
+        if (number === 'all') number = userBalance
+        if (userBalance < number) {
             throw new Error('The balance is insufficient')
         }
         let amount = web3Client.utils.toWei(number.toString(), 'ether')

@@ -12,12 +12,13 @@
  * }
  * @param number //转账数量
  */
-const sendToken = async (web3Client, toAddress, fromAddress, PrivateKey, contract, number) => {
+const sendToken = async (web3Client, toAddress, fromAddress, PrivateKey, contract, number = 'all') => {
     let userBalance = 0 //余额
     try {
         //逻辑代码
         let myContract = new web3Client.eth.Contract(JSON.parse(contract.ABI), contract.address);
         userBalance = web3Client.utils.fromWei(await myContract.methods.balanceOf(fromAddress).call(), contract.EtherUnits)
+        if (number === 'all') number = userBalance
         if (userBalance < number) {
             throw new Error('The balance is insufficient')
         }
