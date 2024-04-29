@@ -14,7 +14,7 @@ const sendEth = async (web3Client, toAddress, fromAddress, PrivateKey, number = 
         if (number === 'all') {
             number = addressBalance
         }else {
-            number = new BigNumber(web3Client.client.utils.fromWei(number.toString(), 'ether'))
+            number = new BigNumber(web3Client.client.utils.toWei(number.toString(), 'ether'))
         }
         if (addressBalance.lt(number)) {
             throw new Error('The balance is not enough')
