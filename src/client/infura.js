@@ -80,7 +80,6 @@ const netWorks = {
     }
 }
 const infura = (YOUR_INFURA_PROJECT_ID, netWork = "mainnet", version = 'v3') => {
-    console.log(YOUR_INFURA_PROJECT_ID,netWork,version,netWorks.hasOwnProperty(netWork))
     if (!netWorks.hasOwnProperty(netWork)) throw new Error("Network not supported");
     return {
         client: __client(netWorks[netWork].rpcUrl.replace("YOUR_INFURA_PROJECT_ID", YOUR_INFURA_PROJECT_ID).replace("VERSION", version)),

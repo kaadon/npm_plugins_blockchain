@@ -1,3 +1,5 @@
+const BigNumber = require('bignumber.js');
+
 /**
  * @param web3Client //web3实例
  * @param toAddress //转入地址
@@ -8,18 +10,23 @@
 const sendEth = async (web3Client, toAddress, fromAddress, PrivateKey, number = 'all') => {
     try {
         //逻辑代码
-        let userBalance = web3Client.client.utils.fromWei(await web3Client.client.eth.getBalance(fromAddress), 'ether')//余额
-        if (number === 'all') number = userBalance
-        if (userBalance < number) {
-            throw new Error('The balance is insufficient')
+        const addressBalance= new BigNumber(await web3Client.client.eth.getBalance(fromAddress))
+        if (number === 'all') {
+            number = addressBalance
+        }else {
+            number = new BigNumber(web3Client.client.utils.fromWei(number.toString(), 'ether'))
         }
-        let amount = web3Client.client.utils.toWei(number.toString(), 'ether')
+        if (addressBalance.lt(number)) {
+            throw new Error('The balance is not enough')
+        }
         let txObject = {
             from: fromAddress,
             to: toAddress,
-            value: amount
+            value: number.toString(),
         }
         txObject.gasPrice = await web3Client.client.eth.getGasPrice(txObject)
+        const fee = new BigNumber(web3Client.client.utils.hexToNumberString(txObject.gasPrice)).multipliedBy(21000).multipliedBy(10)
+        if (new BigNumber(number).plus(fee).gt(addressBalance)) throw new Error('Not enough to cover the processing fee')
         let txData = await web3Client.client.eth.accounts.signTransaction(txObject, PrivateKey)
         if (!txData.rawTransaction) {
             throw new Error('The transaction failed')
